@@ -1,6 +1,7 @@
 package model;
 
 import org.jetbrains.annotations.NotNull;
+import replication.leaderboardtest.LeaderboardImpl;
 import ticker.Tickable;
 
 import java.util.List;
@@ -30,4 +31,5 @@ public interface GameSession {
   List<Player> getPlayers();
 
   Field getField();
+  LeaderboardImpl getLeaderboard();
 }

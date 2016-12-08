@@ -3,10 +3,13 @@ package mechanics;
 import com.sun.jmx.remote.internal.ClientCommunicatorAdmin;
 import main.ApplicationContext;
 import main.Service;
+import matchmaker.MatchMaker;
 import messageSystem.Abonent;
 import messageSystem.Message;
 import messageSystem.MessageSystem;
+import messageSystem.messages.LeaderboardMsg;
 import messageSystem.messages.ReplicateMsg;
+import model.GameSessionImpl;
 import network.ClientConnectionServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,9 +49,11 @@ public class Mechanics extends Service implements Tickable {
     log.info("Start replication");
     @NotNull MessageSystem messageSystem = ApplicationContext.instance().get(MessageSystem.class);
     Message message = new ReplicateMsg(this.getAddress());
+    Message msg = new LeaderboardMsg(this.getAddress());
     messageSystem.sendMessage(message);
-
+    messageSystem.sendMessage(msg);
     //execute all messages from queue
     messageSystem.execForService(this);
+
   }
 }

@@ -26,7 +26,8 @@ public class FullStateReplicator implements Replicator {
   @Override
   public void replicate() {
     for (GameSession gameSession : ApplicationContext.instance().get(MatchMaker.class).getActiveGameSessions()) {
-      Food[] food = new Food[0];//TODO food and viruses
+       //TODO food and viruses
+      Food[] food = gameSession.getField().getFoods().toArray(new Food[gameSession.getField().getFoods().size()]);
       int numberOfCellsInSession = 0;
       for (Player player : gameSession.getPlayers()) {
         numberOfCellsInSession += player.getCells().size();

@@ -2,6 +2,7 @@ package model;
 
 import main.ApplicationContext;
 import org.jetbrains.annotations.NotNull;
+import replication.leaderboardtest.LeaderboardImpl;
 import utils.*;
 
 import java.util.ArrayList;
@@ -23,12 +24,14 @@ public class GameSessionImpl implements GameSession {
   private final PlayerPlacer playerPlacer;
   @NotNull
   private final VirusGenerator virusGenerator;
+  private final @NotNull LeaderboardImpl ldb;
 
   public GameSessionImpl(@NotNull FoodGenerator foodGenerator, @NotNull PlayerPlacer playerPlacer, @NotNull VirusGenerator virusGenerator) {
     this.foodGenerator = foodGenerator;
     this.playerPlacer = playerPlacer;
     this.virusGenerator = virusGenerator;
     virusGenerator.generate();
+    ldb = new LeaderboardImpl();
   }
 
   @Override
@@ -51,6 +54,9 @@ public class GameSessionImpl implements GameSession {
   public Field getField() {
     return field;
   }
+
+  @Override
+  public LeaderboardImpl getLeaderboard() { return this.ldb;}
 
   @Override
   public String toString() {

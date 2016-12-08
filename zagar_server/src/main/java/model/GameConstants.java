@@ -13,4 +13,5 @@ public interface GameConstants {
   int FOOD_PER_SECOND_GENERATION = 1;
   int MAX_FOOD_ON_FIELD = 100;
   int NUMBER_OF_VIRUSES = 10;
+  int LEADERBOARD_SIZE = 10;
 }
